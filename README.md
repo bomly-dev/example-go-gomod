@@ -65,19 +65,29 @@ bomly diff \
 Fail your pipeline automatically when high-severity vulnerabilities are introduced:
 
 ```yaml
-# .github/workflows/bomly.yml
-name: Bomly Security Scan
-on: [push, pull_request]
+# .github/workflows/bomly-guard.yml
+name: Bomly Guard
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  security-events: write
 
 jobs:
-  scan:
+  guard:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Scan with Bomly
-        run: |
-          curl -sSfL https://bomly.dev/install.sh | sh
-          bomly scan --enrich --audit --fail-on high
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      # Add the package-manager setup steps this ecosystem needs before Bomly Guard.
+      - uses: bomly-dev/bomly-guard@v1
+        with:
+          fail-on: high
+          comment-summary-in-pr: always
 ```
 
 Made with [Bomly](https://bomly.dev) — open-source SCA for every ecosystem.
