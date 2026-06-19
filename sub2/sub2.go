@@ -2,9 +2,10 @@ package sub2
 
 import "strconv"
 import "fmt"
-import "github.com/simeji/jid"
+import "strings"
 
 func Bar() {
-    query1 := jid.NewQueryWithString("HelloYeah")
-    fmt.Println("Query length: " + strconv.Itoa(query1.Length()));
+	query1 := "HelloYeah"
+	length := strings.Count(query1, "") - 1
+	fmt.Println("Query length: " + strconv.Itoa(length))
 }
