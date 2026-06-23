@@ -10,5 +10,5 @@ require (
 	github.com/simeji/jid v0.7.6
 	github.com/stretchr/testify v1.8.2 // indirect
 	golang.org/x/sys v0.6.0 // indirect
-	golang.org/x/text v0.3.5
+	golang.org/x/text v0.3.7
 )
