@@ -26,5 +26,5 @@ jobs:
         with:
           log-level: debug
           ecosystems: go
-          fail-on: high
+          fail-on: any
           comment-summary-in-pr: always
